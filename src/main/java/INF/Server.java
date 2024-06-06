@@ -69,7 +69,6 @@ public class Server {
 			try (ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 				out = new ObjectOutputStream(socket.getOutputStream());
 
-//				while (true) {
 				String nameButton = in.readUTF();
 				@SuppressWarnings("unchecked")
 				List<String> message = (List<String>) in.readObject();
@@ -116,14 +115,8 @@ public class Server {
 					String destinationIP = message.get(3);
 					String key = message.get(5);
 					UseCase.sendMessage(sender, receiver, encryptedStringContent, key);
-//					Service s = new Service();
-//					List<String> l = s.reloadMessage(sender, receiver);
-//					DTO_Message dto_Message = new DTO_Message(encryptedStringContent, "Reload message", destinationIP);
-//					dto_Message.setL(l);
-//					server.broadcast(dto_Message);
 					DTO_Message dto_Message = new DTO_Message("null", "Reload", destinationIP);
 					server.broadcast(dto_Message);
-//					}
 				}
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
