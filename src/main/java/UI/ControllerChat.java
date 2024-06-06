@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import INF.Client;
+import INF.Server;
 
 public class ControllerChat implements ActionListener {
 
@@ -19,9 +20,9 @@ public class ControllerChat implements ActionListener {
 			String destinationIP = ViewChat.txtNhpIp.getText();
 			if (!content.equals("") && !content.equals(null) && !destinationIP.equals("Nhập địa chỉ để gửi")
 					&& !destinationIP.equals("") && !destinationIP.equals(null)) {
-				String serverIP = "192.168.1.3";
-				int serverPort = 12345;
-				String clientIP = "192.168.1.3";
+				String serverIP = Server.serverIP;
+				int serverPort = Server.serverPort;
+				String clientIP = Client.clientIp;
 				Client client = new Client(clientIP, serverIP, serverPort);
 				List<String> list = new ArrayList<String>();
 				list.add(sender);
@@ -43,9 +44,9 @@ public class ControllerChat implements ActionListener {
 			if (!ViewChat.txtNhpEmail.getText().equals("Nhập email để kết bạn")
 					&& !ViewChat.txtNhpEmail.getText().equals("") && !email.equals("Nhập email để kết bạn")
 					&& !email.equals("") && !email.equals(null)) {
-				String serverIP = "192.168.1.3";
-				int serverPort = 12345;
-				String clientIP = "192.168.1.3";
+				String serverIP = Server.serverIP;
+				int serverPort = Server.serverPort;
+				String clientIP = Client.clientIp;
 				Client client = new Client(clientIP, serverIP, serverPort);
 				List<String> list = new ArrayList<String>();
 				list.add(email);

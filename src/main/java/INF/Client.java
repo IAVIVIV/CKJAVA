@@ -13,6 +13,7 @@ import UI.ViewChat;
 import UI.ViewLogIn;
 
 public class Client {
+	public static String clientIp = "192.168.1.3";
 
 	private String serverIP;
 	private int serverPort;

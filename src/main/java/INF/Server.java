@@ -15,6 +15,8 @@ import DOMAIN.Repository;
 import DOMAIN.Service;
 
 public class Server {
+	public static String serverIP = "192.168.1.3";
+	public static int serverPort = 12345;
 
 	private int port;
 	private Set<ClientHandler> clientHandlers = new HashSet<>();

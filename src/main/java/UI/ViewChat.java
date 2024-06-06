@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import INF.Client;
+import INF.Server;
 
 public class ViewChat extends JFrame {
 
@@ -120,9 +121,9 @@ public class ViewChat extends JFrame {
 						String receiver = jList.getModel().getElementAt(index);
 						ViewChat.selectUser = receiver;
 						String nameBtn = "Reload message";
-						String serverIP = "192.168.1.3";
-						int serverPort = 12345;
-						String clientIP = "192.168.1.3";
+						String serverIP = Server.serverIP;
+						int serverPort = Server.serverPort;
+						String clientIP = Client.clientIp;
 						Client client = new Client(clientIP, serverIP, serverPort);
 						List<String> list = new ArrayList<String>();
 						list.add(sender);

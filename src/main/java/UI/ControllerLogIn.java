@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import INF.Client;
+import INF.Server;
 
 public class ControllerLogIn implements ActionListener {
 	@Override
@@ -16,9 +17,9 @@ public class ControllerLogIn implements ActionListener {
 			String matKhau = ViewLogIn.txtMtKhu.getText();
 			if (!taiKhoan.equals("Tài khoản") && !taiKhoan.equals("") && !matKhau.equals("Mật khẩu")
 					&& !matKhau.equals("")) {
-				String serverIP = "192.168.1.3";
-				int serverPort = 12345;
-				String clientIP = "192.168.1.3";
+				String serverIP = Server.serverIP;
+				int serverPort = Server.serverPort;
+				String clientIP = Client.clientIp;
 				Client client = new Client(clientIP, serverIP, serverPort);
 				List<String> list = new ArrayList<String>();
 				list.add(taiKhoan);
@@ -28,7 +29,6 @@ public class ControllerLogIn implements ActionListener {
 					ViewLogIn.username = taiKhoan;
 					client.start(nameBtn, list);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

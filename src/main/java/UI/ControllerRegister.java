@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import INF.Client;
+import INF.Server;
 
 public class ControllerRegister implements ActionListener {
 
@@ -19,9 +20,9 @@ public class ControllerRegister implements ActionListener {
 			String matkhau2 = ViewRegister.txtNhpLiMt.getText();
 			if (!taiKhoan.equals("Tài khoản") && !taiKhoan.equals("") && !email.equals("Email") && !email.equals("")
 					&& !matKhau.equals("Mật khẩu") && !matKhau.equals("") && matkhau2.equals(matKhau)) {
-				String serverIP = "192.168.1.3";
-				int serverPort = 12345;
-				String clientIP = "192.168.1.3";
+				String serverIP = Server.serverIP;
+				int serverPort = Server.serverPort;
+				String clientIP = Client.clientIp;
 				Client client = new Client(clientIP, serverIP, serverPort);
 				List<String> list = new ArrayList<String>();
 				list.add(taiKhoan);
