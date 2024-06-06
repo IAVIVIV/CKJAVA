@@ -1,5 +1,6 @@
 package INF;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -110,21 +111,27 @@ public class Client {
 		@Override
 		public void run() {
 			try {
-				DTO_Message message = (DTO_Message) in.readObject();
-				if (message.getSourceIP().equals("Đăng nhập")) {
-					if (message.getContent().equals("true")) {
-						ViewChat.main(null);
-						ViewLogIn.frame.setVisible(false);
-					}
-				} else if (message.getSourceIP().equals("accept_e")) {
-					if (!message.getContent().equals("null")) {
-						ViewChat.listModel.addElement(message.getContent());
-					}
-				} else if (message.getSourceIP().equals("Reload message")) {
-					ViewChat.txtrSdgd.setText("");
-					List<String> content = message.getL();
-					for (String string : content) {
-						ViewChat.txtrSdgd.setText(ViewChat.txtrSdgd.getText() + string + "\n");
+				while (true) {
+					DTO_Message message = (DTO_Message) in.readObject();
+					if (message.getSourceIP().equals("Đăng nhập")) {
+						if (message.getContent().equals("true")) {
+							ViewChat.main(null);
+							ViewLogIn.frame.setVisible(false);
+						}
+					} else if (message.getSourceIP().equals("accept_e")) {
+						if (!message.getContent().equals("null")) {
+							ViewChat.listModel.addElement(message.getContent());
+						}
+					} else if (message.getSourceIP().equals("Reload message")) {
+						ViewChat.txtrSdgd.setText("");
+						List<String> content = message.getL();
+						for (String string : content) {
+							ViewChat.txtrSdgd.setText(ViewChat.txtrSdgd.getText() + string + "\n");
+						}
+					} else if (message.getSourceIP().equals("Reload")) {
+						MouseEvent mouseEvent = new MouseEvent(ViewChat.jList, MouseEvent.MOUSE_CLICKED,
+								System.currentTimeMillis(), 0, 10, 10, 1, false);
+						ViewChat.jList.dispatchEvent(mouseEvent);
 					}
 				}
 			} catch (IOException | ClassNotFoundException e) {
